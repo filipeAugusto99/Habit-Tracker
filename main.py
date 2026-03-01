@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 
 USERNAME = "filipeaug26"
@@ -42,10 +43,11 @@ headers = {
 
 
 pixel_graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
+today = datetime(year=2026, month=2, day=18)
 
 
 pixel_graph_config = {
-    "date": "20260301",
+    "date": today.strftime("%Y%m%d"),
     "quantity": "5",
 }
 
