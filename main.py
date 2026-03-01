@@ -3,6 +3,7 @@ import requests
 
 USERNAME = "filipeaug26"
 TOKEN = "sacasalkdsamcsldmcslkdm234324"
+GRAPH_ID = "graph2"
 
 
 pixela_endpoint = "https://pixe.la/v1/users"
@@ -24,7 +25,7 @@ graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs"
 
 
 graph_config = {
-    "id": "graph2",
+    "id": GRAPH_ID,
     "name": "Cycling Graph",
     "unit": "Km",
     "type": "float",
@@ -36,5 +37,18 @@ headers = {
 }
 
 
-response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
+# response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
+# print(response.text)
+
+
+pixel_graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
+
+
+pixel_graph_config = {
+    "date": "20260301",
+    "quantity": "5",
+}
+
+
+response = requests.post(url=pixel_graph_endpoint, json=pixel_graph_config, headers=headers)
 print(response.text)
