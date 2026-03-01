@@ -1,3 +1,5 @@
+from http.client import responses
+
 import requests
 from datetime import datetime
 
@@ -43,14 +45,31 @@ headers = {
 
 
 pixel_graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
-today = datetime(year=2026, month=2, day=18)
+today = datetime.now()
 
 
 pixel_graph_config = {
     "date": today.strftime("%Y%m%d"),
-    "quantity": "5",
+    "quantity": input("How many kilometers did you cycle today? "),
 }
 
 
 response = requests.post(url=pixel_graph_endpoint, json=pixel_graph_config, headers=headers)
 print(response.text)
+
+
+# UPDATE
+update_pixels_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{today.strftime("%Y%m%d")}"
+
+update_params = {
+    "quantity": "20"
+}
+
+# response = requests.put(url=update_pixels_endpoint,json=update_params ,headers=headers)
+# print(response.text)
+
+
+# DELETE
+# delete_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{today.strftime("%Y%m%d")}"
+# response = requests.delete(url=delete_endpoint, headers=headers)
+# print(response.text)
